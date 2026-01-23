@@ -32,7 +32,7 @@ function afficher_le_menu(){
     echo"——————————————————————————————————————————\n\n";
 }
 
-function option():int{
+function option_du_menu():int{
     $choix=intval(readline("Votre choix ? "));
     while ($choix != 1 and $choix != 2 and $choix != 3 and $choix != 4 and $choix != 9){
         afficher_le_menu();
@@ -52,7 +52,7 @@ while (!$fin){
     afficher_le_menu();
 
     //traitement du choix du joueur
-    switch (option()) {
+    switch (option_du_menu()) {
         case 1:
             echo"Liste des chats\n";
             /** @todo: afficher la liste des chats */
