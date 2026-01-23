@@ -14,6 +14,13 @@
  *
  */
 
+$les_pouvoirs = [
+    "eau", 
+    "feu", 
+    "terre", 
+    "air"
+];
+
 function afficher_le_menu(){
     echo"——————————————————————————————————————————\n";
     echo" Menu:\n";
