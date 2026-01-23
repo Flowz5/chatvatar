@@ -18,7 +18,6 @@ function afficher_le_menu(){
     echo"——————————————————————————————————————————\n";
     echo" Menu:\n";
     echo" 1. Afficher la liste des chats\n";
-    echo" 4. Lancer un combat\n";
     echo" 2. Créer un nouveau chaton\n";
     echo" 3. Supprimer un chaton\n";
     echo" 4. Lancer un combat\n";
@@ -69,5 +68,4 @@ while (!$fin){
         default:
             echo"Valeur de choix impossible";
     };
-    echo"\n";
 }
