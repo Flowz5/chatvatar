@@ -14,12 +14,15 @@
  *
  */
 
-$les_pouvoirs = [
-    "eau", 
-    "feu", 
-    "terre", 
-    "air"
-];
+/** 
+ * Tableaux des données 
+ */
+
+$les_pouvoirs = ["eau", "terre", "feu", "air"];
+
+/**
+ * Fonctions
+ */
 
 function afficher_le_menu(){
     echo"——————————————————————————————————————————\n";
@@ -41,8 +44,10 @@ function option_du_menu():int{
     return $choix;
 }
 
+/**
+ * Programme principal
+ */
 
-//Programme de chatons tout mignons
 echo"\nBienvenue dans Catvatar\n";
 
 $fin = false;
