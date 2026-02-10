@@ -50,19 +50,36 @@ function afficher_les_pouvoirs($liste_pouvoirs) {
 }
 
 /**
- * Affiche la liste des chats (Version simple pour l'instant)
- * On pourra l'améliorer plus tard avec un tableau HTML <table>
+ * Affiche la liste des chats sous forme de tableau HTML
+ * @param array $tableau_chats Le tableau des chats (souvent $_SESSION['les_chats'])
  */
 function liste_des_chats($tableau_chats) {
+    // Si la liste est vide ou n'existe pas
     if (empty($tableau_chats)) {
-        echo "<p>Aucun chat dans la liste.</p>";
+        echo "<p>Aucun chat à afficher.</p>";
         return;
     }
-    
-    echo "<ul>";
-    foreach($tableau_chats as $index => $chat) {
-        echo "<li><strong>" . $chat['nom'] . "</strong> (" . $chat['type'] . ")</li>";
+
+    // Début du tableau HTML avec bordures
+    echo '<table border="1" style="border-collapse: collapse; width: 50%;">';
+
+    // En-tête du tableau
+    echo '<thead>';
+    echo '<tr style="background-color: #f2f2f2;">';
+    echo '<th style="padding: 8px;">Nom</th>';
+    echo '<th style="padding: 8px;">Pouvoir</th>';
+    echo '</tr>';
+    echo '</thead>';
+
+    // Corps du tableau
+    echo '<tbody>';
+    foreach($tableau_chats as $chat) {
+        echo '<tr>';
+        echo '<td style="padding: 8px;">' . htmlspecialchars($chat['nom']) . '</td>';
+        echo '<td style="padding: 8px;">' . htmlspecialchars($chat['type']) . '</td>';
+        echo '</tr>';
     }
-    echo "</ul>";
+    echo '</tbody>';
+    echo '</table>';
 }
 ?>
