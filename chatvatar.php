@@ -77,7 +77,9 @@ while (!$fin){
     switch (option_du_menu()) {
         case 1:
             echo"Liste des chats\n";
-            /** @todo: afficher la liste des chats */
+            foreach($les_chats as $index => $chat) {
+                echo "$index : " . $chat['nom'] . " (" . $chat['type'] . ")\n";
+            }
             break;
         case 2 :
             echo"Création d'un chat\n";
