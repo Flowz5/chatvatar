@@ -19,10 +19,27 @@
  */
 
 $les_pouvoirs = ["eau", "terre", "feu", "air"];
+$les_chats = [];
 
 /**
  * Fonctions
  */
+
+function afficher_les_pouvoirs($liste_pouvoirs) {
+    echo "Liste des pouvoirs :\n";
+    foreach ($liste_pouvoirs as $index => $pouvoir) {
+        echo "$index - $pouvoir\n";
+    }
+}
+
+function option_des_pouvoirs($liste_pouvoirs) {
+    do {
+        afficher_les_pouvoirs($liste_pouvoirs);
+        $choix = intval(readline("Choisissez un pouvoir (numéro) : "));
+    } while (!isset($liste_pouvoirs[$choix]));
+    
+    return $liste_pouvoirs[$choix];
+}
 
 function afficher_le_menu(){
     echo"——————————————————————————————————————————\n";
@@ -64,7 +81,13 @@ while (!$fin){
             break;
         case 2 :
             echo"Création d'un chat\n";
-            /** @todo: créer un chat dans la liste */
+            $nom = readline("Nom du chat : ");
+            $type = option_des_pouvoirs($les_pouvoirs);
+            
+            $nouveau_chat = ["nom" => $nom, "type" => $type];
+            array_push($les_chats, $nouveau_chat);
+            
+            echo "Le chat $nom a rejoint l'arène !\n";
             break;
         case 3 :
             echo"Suppression d'un chat\n";
