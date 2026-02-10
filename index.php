@@ -2,15 +2,15 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Chatvatar - Menu</title>
+    <title>Chatvatar - Accueil</title>
 </head>
 <body>
-    <h1>🐱 Menu Chatvatar</h1>
-    <ul>
-        <li><a href="liste_chat.php">1. Afficher la liste des chats</a></li>
-        <li><a href="creer_chat.php">2. Créer un nouveau chaton</a></li>
-        <li><a href="supprimer_chat.php">3. Supprimer un chaton</a></li>
-        <li><a href="combat.php">4. Lancer un combat</a></li>
-    </ul>
+    <?php
+        // 1. On charge le moteur
+        include 'chatvatar.php';
+
+        // 2. On appelle la fonction d'affichage du menu
+        afficher_le_menu();
+    ?>
 </body>
 </html>

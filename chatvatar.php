@@ -51,15 +51,14 @@ function liste_des_chats($tableau_chats) {
     }
 }
 
-function afficher_le_menu(){
-    echo"——————————————————————————————————————————\n";
-    echo" Menu:\n";
-    echo" 1. Afficher la liste des chats\n";
-    echo" 2. Créer un nouveau chaton\n";
-    echo" 3. Supprimer un chaton\n";
-    echo" 4. Lancer un combat\n";
-    echo" 9. Quitter\n";
-    echo"——————————————————————————————————————————\n\n";
+function afficher_le_menu() {
+    echo "<h1>Bienvenue sur Chatvatar</h1>";
+    echo "<ul>";
+    echo '<li><a href="creer_chat.php">Créer un chat</a></li>';
+    echo '<li><a href="liste_chat.php">Liste des chats</a></li>';
+    echo '<li><a href="supprimer_chat.php">Supprimer un chat</a></li>';
+    echo '<li><a href="combat.php">Nouveau combat</a></li>';
+    echo "</ul>";
 }
 
 function option_du_menu():int{
