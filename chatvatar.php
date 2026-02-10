@@ -113,7 +113,39 @@ while (!$fin){
             break;
         case 4 :
             echo"Nouveau combat\n";
-            /** @todo : lancer une combat */ 
+            if (count($les_chats) < 2) {
+                echo "Il faut au moins 2 chats pour se battre !\n";
+                break;
+            }
+
+            liste_des_chats($les_chats);
+            $id1 = intval(readline("Combattant 1 : "));
+            $id2 = intval(readline("Combattant 2 : "));
+
+            if (isset($les_chats[$id1]) && isset($les_chats[$id2])) {
+                $c1 = $les_chats[$id1];
+                $c2 = $les_chats[$id2];
+                
+                echo "\n⚔️ " . $c1['nom'] . " VS " . $c2['nom'] . " ⚔️\n";
+
+                if ($c1['type'] == $c2['type']) {
+                    echo "Match nul !";
+                } else {
+                    $victoire_j1 = false;
+                    switch ($c1['type']) {
+                        case 'eau':   if($c2['type'] == 'feu')   $victoire_j1 = true; break;
+                        case 'feu':   if($c2['type'] == 'terre') $victoire_j1 = true; break;
+                        case 'terre': if($c2['type'] == 'air')   $victoire_j1 = true; break;
+                        case 'air':   if($c2['type'] == 'eau')   $victoire_j1 = true; break;
+                    }
+
+                    if ($victoire_j1) {
+                        echo "🏆 " . $c1['nom'] . " gagne !\n";
+                    } else {
+                        echo "🏆 " . $c2['nom'] . " gagne !\n";
+                    }
+                }
+            }
             break;
         case 9:
             $fin=true;
