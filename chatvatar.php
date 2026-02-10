@@ -101,7 +101,15 @@ while (!$fin){
             break;
         case 3 :
             echo"Suppression d'un chat\n";
-            /** @todo : supprimer un chat de la liste */
+            liste_des_chats($les_chats);
+            $index = intval(readline("Numéro du chat à supprimer : "));
+            
+            if(isset($les_chats[$index])) {
+                array_splice($les_chats, $index, 1);
+                echo "Chat supprimé.\n";
+            } else {
+                echo "Ce chat n'existe pas.\n";
+            }
             break;
         case 4 :
             echo"Nouveau combat\n";
