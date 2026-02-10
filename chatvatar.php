@@ -41,6 +41,16 @@ function option_des_pouvoirs($liste_pouvoirs) {
     return $liste_pouvoirs[$choix];
 }
 
+function liste_des_chats($tableau_chats) {
+    if (empty($tableau_chats)) {
+        echo "Aucun chat dans la liste.\n";
+        return;
+    }
+    foreach($tableau_chats as $index => $chat) {
+        echo "$index : " . $chat['nom'] . " (" . $chat['type'] . ")\n";
+    }
+}
+
 function afficher_le_menu(){
     echo"——————————————————————————————————————————\n";
     echo" Menu:\n";
@@ -77,9 +87,7 @@ while (!$fin){
     switch (option_du_menu()) {
         case 1:
             echo"Liste des chats\n";
-            foreach($les_chats as $index => $chat) {
-                echo "$index : " . $chat['nom'] . " (" . $chat['type'] . ")\n";
-            }
+            liste_des_chats($les_chats);
             break;
         case 2 :
             echo"Création d'un chat\n";
