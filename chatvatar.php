@@ -1,56 +1,26 @@
 <?php
 /**
  * ------------------------------------------------------
- *                        CATVATAR
+ * CATVATAR
  * un jeu inspiré de l'anime Avatar mais avec des chats !
  * ------------------------------------------------------
- * 
- * Les chat ont un type qui régit l'issue de leurs combats :
- * 
- *  - 💧 eau > feu 🔥
- *  - 🔥 feu > terre 🪨
- *  - 🪨 terre > air 🌪️
- *  - 🌪️ air > eau 💧
- *
  */
 
-/** 
- * Tableaux des données 
+/** * Tableaux des données 
  */
-
 $les_pouvoirs = ["eau", "terre", "feu", "air"];
-$les_chats = [];
+
+// NOTE : On a supprimé $les_chats = [] ici.
+// Les données seront désormais stockées dans $_SESSION['les_chats']
+// géré directement dans les pages (creer_chat.php, etc.)
 
 /**
- * Fonctions
+ * Fonctions d'affichage HTML
  */
 
-function afficher_les_pouvoirs($liste_pouvoirs) {
-    echo "Liste des pouvoirs :\n";
-    foreach ($liste_pouvoirs as $index => $pouvoir) {
-        echo "$index - $pouvoir\n";
-    }
-}
-
-function option_des_pouvoirs($liste_pouvoirs) {
-    do {
-        afficher_les_pouvoirs($liste_pouvoirs);
-        $choix = intval(readline("Choisissez un pouvoir (numéro) : "));
-    } while (!isset($liste_pouvoirs[$choix]));
-    
-    return $liste_pouvoirs[$choix];
-}
-
-function liste_des_chats($tableau_chats) {
-    if (empty($tableau_chats)) {
-        echo "Aucun chat dans la liste.\n";
-        return;
-    }
-    foreach($tableau_chats as $index => $chat) {
-        echo "$index : " . $chat['nom'] . " (" . $chat['type'] . ")\n";
-    }
-}
-
+/**
+ * Affiche le menu de navigation
+ */
 function afficher_le_menu() {
     echo "<h1>Bienvenue sur Chatvatar</h1>";
     echo "<ul>";
@@ -61,11 +31,38 @@ function afficher_le_menu() {
     echo "</ul>";
 }
 
-function option_du_menu():int{
-    $choix=intval(readline("Votre choix ? "));
-    while ($choix != 1 and $choix != 2 and $choix != 3 and $choix != 4 and $choix != 9){
-        afficher_le_menu();
-		$choix=intval(readline("Votre choix ? "));
+/**
+ * Affiche les boutons radio pour le choix des pouvoirs
+ * @param array $liste_pouvoirs Le tableau des pouvoirs disponibles
+ */
+function afficher_les_pouvoirs($liste_pouvoirs) {
+    echo "<div class='choix-pouvoirs'>";
+    foreach ($liste_pouvoirs as $index => $pouvoir) {
+        // ucfirst met la première lettre en majuscule (eau -> Eau)
+        $label = ucfirst($pouvoir);
+        
+        echo "<div style='margin-bottom: 5px;'>";
+        echo "<input type='radio' id='$pouvoir' name='type' value='$pouvoir' required>";
+        echo "<label for='$pouvoir'> $label</label>";
+        echo "</div>";
     }
-    return $choix;
+    echo "</div>";
 }
+
+/**
+ * Affiche la liste des chats (Version simple pour l'instant)
+ * On pourra l'améliorer plus tard avec un tableau HTML <table>
+ */
+function liste_des_chats($tableau_chats) {
+    if (empty($tableau_chats)) {
+        echo "<p>Aucun chat dans la liste.</p>";
+        return;
+    }
+    
+    echo "<ul>";
+    foreach($tableau_chats as $index => $chat) {
+        echo "<li><strong>" . $chat['nom'] . "</strong> (" . $chat['type'] . ")</li>";
+    }
+    echo "</ul>";
+}
+?>
