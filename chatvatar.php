@@ -6,13 +6,7 @@
  * ------------------------------------------------------
  */
 
-/** * Tableaux des données 
- */
 $les_pouvoirs = ["eau", "terre", "feu", "air"];
-
-/**
- * Fonctions d'affichage HTML
- */
 
 function afficher_le_menu() {
     echo "<h1>Bienvenue sur Chatvatar</h1>";
@@ -42,13 +36,18 @@ function liste_des_chats($tableau_chats) {
         return;
     }
 
-    echo '<table border="1" style="border-collapse: collapse; width: 50%;">';
-    echo '<thead><tr style="background-color: #f2f2f2;"><th style="padding: 8px;">Nom</th><th style="padding: 8px;">Pouvoir</th></tr></thead>';
+    echo '<table border="1" style="border-collapse: collapse; width: 60%;">';
+    // NOUVEAUTÉ : Ajout de la colonne Points de Vie
+    echo '<thead><tr style="background-color: #f2f2f2;"><th style="padding: 8px;">Nom</th><th style="padding: 8px;">Pouvoir</th><th style="padding: 8px;">Points de Vie</th></tr></thead>';
     echo '<tbody>';
     foreach($tableau_chats as $chat) {
+        // Sécurité pour les anciens chats
+        $pv = isset($chat['pv']) ? $chat['pv'] : 100;
+        
         echo '<tr>';
         echo '<td style="padding: 8px;">' . htmlspecialchars($chat['nom']) . '</td>';
         echo '<td style="padding: 8px;">' . htmlspecialchars($chat['type']) . '</td>';
+        echo '<td style="padding: 8px; font-weight: bold; color: #2e7d32;">' . $pv . ' / 100 PV</td>';
         echo '</tr>';
     }
     echo '</tbody></table>';

@@ -29,23 +29,22 @@ include 'chatvatar.php';
     <?php
     // Traitement du formulaire
     if (!empty($_POST)) {
-        // Démarrer la session pour accéder à la mémoire
         session_start();
 
-        // Créer le tableau de session s'il n'existe pas encore
         if (!isset($_SESSION['les_chats'])) {
             $_SESSION['les_chats'] = [];
         }
 
-        // Ajouter le nouveau chat
+        // NOUVEAUTÉ : On ajoute 100 PV à la création
         $nouveau_chat = [
             "nom" => $_POST['nom'],
-            "type" => $_POST['type']
+            "type" => $_POST['type'],
+            "pv" => 100
         ];
 
         array_push($_SESSION['les_chats'], $nouveau_chat);
 
-        echo "<p style='color:green'>✅ Le chat <strong>" . $_POST['nom'] . "</strong> (" . $_POST['type'] . ") a été ajouté avec succès !</p>";
+        echo "<p style='color:green'>✅ Le chat <strong>" . htmlspecialchars($_POST['nom']) . "</strong> (" . $_POST['type'] . ") a été ajouté avec 100 PV !</p>";
     }
     ?>
 </body>
